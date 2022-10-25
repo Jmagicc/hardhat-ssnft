@@ -3,7 +3,7 @@ const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 const { ethers } = require("hardhat");
 
 //初始化部署得到合约实例
-describe("初始化部署得到合约实例", function() {
+describe("初始化部署峰分账合约得到合约实例", function() {
     async function deployTokenFixture() {
         const Token = await ethers.getContractFactory("PaymentSplit");
         const [owner, addr1, addr2] = await ethers.getSigners();
@@ -19,6 +19,7 @@ describe("初始化部署得到合约实例", function() {
     describe("", function() {
         it("整体测试分账流程", async function() {
             const { hardhatToken, owner, addr1, addr2 } = await loadFixture(deployTokenFixture);
+            console.log("合约地址::",hardhatToken.address)
             // //--------1.部署合约成功后，向合约中存入60e
             expect(await hardhatToken.getBalance(hardhatToken.address)).to.equal(0);
 
@@ -76,11 +77,5 @@ describe("初始化部署得到合约实例", function() {
 
         })
     })
-
-
-
-
-
-
-
+    
 });

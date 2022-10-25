@@ -22,8 +22,8 @@ contract PaymentSplit{
      * @dev 初始化受益人数组_payees和分账份额数组_shares    ["0x5B38Da6a701c568545dCfcB03FcB875f56beddC4","0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2"]
      * 数组长度不能为0，两个数组长度要相等。_shares中元素要大于0，_payees中地址不能为0地址且不能有重复地址
      */
-    constructor(address[] memory _payees, uint256[] memory _shares) payable {
-        // 检查_payees和_shares数组长度相同，且不为0
+    constructor(address[] memory _payees, uint256[] memory _shares) payable{
+           // 检查_payees和_shares数组长度相同，且不为0
         require(_payees.length == _shares.length, "PaymentSplitter: payees and shares length mismatch");
         require(_payees.length > 0, "PaymentSplitter: no payees");
         // 调用_addPayee，更新受益人地址payees、受益人份额shares和总份额totalShares
@@ -99,21 +99,12 @@ contract PaymentSplit{
         emit PayeeAdded(_account, _accountShares);
     }
 
-      // 往合约里发钱
-    function withdraw() public   payable{
-    require(msg.value == 20 ether,"qwer");
-    }
-
-       // 提现合约里的ether去部署者地址中
-    function with(address to) public  {
-        uint256 balance = address(this).balance;
-        payable(to).transfer(balance);
-    }
-    
-    // 获取地址的以太余额
+     /**
+     * @dev 获取地址的以太余额
+     */
     function getBalance(address addr) view public returns(uint){
         return addr.balance;
     }
 
-
+ 
 }
