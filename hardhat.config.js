@@ -16,10 +16,16 @@ require("./tasks/faucet");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-    solidity: "0.8.9",
+    solidity: "0.8.14",
     networks: {
+        // 本地测试网络
         hardhat: {
-            chainId: 1337 // We set 1337 to make interacting with MetaMask simpler
+            chainId: 1337,
+            gasPrice: 20000000000,
+            blockGasLimit: 100000000,
+            allowUnlimitedContractSize: true,
+
+
         },
         goerli: {
             url: `https://goerli.infura.io/v3/${ALCHEMY_API_KEY}`,
